@@ -4,265 +4,935 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>XOCO Café Nürnberg | Mexikanische Kaffeerösterei & Schokoladenmanufaktur</title>
-  <meta name="description" content="XOCO Café in Nürnberg: mexikanischer Kaffee, handgemachte Schokolade, Kakao, Kuchen und gemütliche Atmosphäre in der Vordere Sterngasse 20." />
+  <meta name="description" content="XOCO Café Nürnberg: mexikanische Kaffeerösterei, Schokoladenmanufaktur, Kakao, Kaffee, Kuchen und gemütliche Atmosphäre in der Vordere Sterngasse 20." />
+
   <style>
     :root {
-      --black: #101010;
-      --charcoal: #1b1b1b;
-      --chalk: #f7f2e8;
+      --black: #030303;
+      --soft-black: #090909;
+      --charcoal: #141414;
+      --chalk: #f7f1df;
       --white: #ffffff;
-      --cacao: #3a2118;
-      --terracotta: #c76a3a;
-      --maguey: #1f7a62;
-      --azul: #227c9d;
-      --rosa: #e64b7a;
-      --maiz: #f4bd47;
-      --paper: #fbf7ef;
-      --shadow: 0 28px 90px rgba(0,0,0,.18);
+      --gold: #f3a000;
+      --turquoise: #00c7bb;
+      --pink: #ff176f;
+      --orange: #ff7a00;
+      --green: #20bf74;
+      --red: #e53935;
+      --border: rgba(247, 241, 223, 0.22);
+      --muted: rgba(247, 241, 223, 0.72);
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.55);
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
+      color: var(--chalk);
+      background:
+        radial-gradient(circle at 15% 18%, rgba(255, 23, 111, 0.13), transparent 24%),
+        radial-gradient(circle at 88% 12%, rgba(0, 199, 187, 0.12), transparent 25%),
+        radial-gradient(circle at 80% 86%, rgba(243, 160, 0, 0.11), transparent 24%),
+        var(--black);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--black);
-      background: var(--paper);
       line-height: 1.6;
+      overflow-x: hidden;
     }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.18;
+      background-image:
+        linear-gradient(30deg, transparent 49%, rgba(247,241,223,.12) 50%, transparent 51%),
+        linear-gradient(150deg, transparent 49%, rgba(247,241,223,.08) 50%, transparent 51%);
+      background-size: 68px 68px;
+      mask-image: linear-gradient(to bottom, #000, transparent 82%);
+      z-index: -1;
+    }
+
     a { color: inherit; text-decoration: none; }
 
-    .top-pattern {
-      min-height: 82px;
-      background: var(--charcoal);
-      border-bottom: 8px solid var(--chalk);
-      display: grid;
-      grid-template-columns: repeat(9, 1fr);
-      align-items: center;
-      overflow: hidden;
-    }
-    .bean {
-      color: rgba(247,242,232,.9);
-      font-size: clamp(2rem, 5vw, 4rem);
-      line-height: 1;
-      text-align: center;
-      transform: rotate(var(--r));
-      opacity: var(--o);
-      font-family: Georgia, serif;
+    .aztec-border {
+      height: 20px;
+      background:
+        linear-gradient(135deg, transparent 25%, var(--turquoise) 25% 35%, transparent 35% 65%, var(--pink) 65% 75%, transparent 75%),
+        linear-gradient(45deg, transparent 25%, var(--gold) 25% 35%, transparent 35% 65%, var(--orange) 65% 75%, transparent 75%),
+        var(--black);
+      background-size: 56px 20px;
+      border-top: 1px solid rgba(247,241,223,.28);
+      border-bottom: 1px solid rgba(247,241,223,.28);
     }
 
-    .topbar {
+    .top-illustration {
+      min-height: 82px;
+      display: grid;
+      grid-template-columns: 1fr 120px 1fr;
+      align-items: center;
+      padding: 12px clamp(18px, 5vw, 70px);
+      background: var(--black);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .vine {
+      height: 48px;
+      opacity: .9;
+      background-image:
+        radial-gradient(ellipse at center, transparent 38%, var(--chalk) 40% 45%, transparent 47%),
+        radial-gradient(ellipse at center, transparent 38%, var(--chalk) 40% 45%, transparent 47%);
+      background-size: 54px 34px;
+      background-position: 0 0, 27px 15px;
+      filter: drop-shadow(0 0 12px rgba(255,255,255,.09));
+    }
+
+    .skull-top {
+      width: 74px;
+      height: 74px;
+      margin: 0 auto;
+      position: relative;
+      border: 3px solid var(--chalk);
+      border-radius: 46% 46% 38% 38%;
+      opacity: .92;
+    }
+    .skull-top::before,
+    .skull-top::after {
+      content: "";
+      position: absolute;
+      top: 28px;
+      width: 16px;
+      height: 16px;
+      border: 3px solid var(--chalk);
+      border-radius: 50%;
+    }
+    .skull-top::before { left: 15px; }
+    .skull-top::after { right: 15px; }
+    .skull-mouth {
+      position: absolute;
+      left: 50%;
+      bottom: 13px;
+      width: 34px;
+      height: 10px;
+      transform: translateX(-50%);
+      border-top: 2px solid var(--chalk);
+      background: repeating-linear-gradient(90deg, transparent 0 5px, var(--chalk) 5px 7px);
+    }
+
+    .nav {
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 40;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      padding: 14px clamp(18px, 5vw, 72px);
-      background: rgba(255,255,255,.9);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(16,16,16,.08);
+      padding: 18px clamp(18px, 5vw, 70px);
+      background: rgba(3,3,3,.86);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
     }
-    .brand { display: flex; align-items: center; gap: 12px; font-weight: 950; letter-spacing: .08em; text-transform: uppercase; }
-    .brand-mark { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 999px; color: var(--chalk); background: var(--black); font-family: Georgia, serif; }
-    nav { display: flex; align-items: center; gap: 22px; font-size: .92rem; font-weight: 800; }
-    .lang-toggle { display: flex; padding: 4px; border: 1px solid rgba(16,16,16,.12); border-radius: 999px; background: var(--white); }
-    .lang-toggle button { border: 0; border-radius: 999px; padding: 8px 12px; background: transparent; cursor: pointer; font-weight: 900; }
-    .lang-toggle button.active { background: var(--black); color: var(--white); }
 
-    .btn { display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 999px; padding: 13px 19px; background: var(--black); color: var(--white); font-weight: 900; box-shadow: 0 14px 34px rgba(0,0,0,.18); cursor: pointer; transition: .2s ease; }
-    .btn:hover { transform: translateY(-2px); }
-    .btn.secondary { color: var(--black); background: var(--white); border: 1px solid rgba(16,16,16,.14); box-shadow: none; }
-    .btn.color { background: linear-gradient(135deg, var(--maguey), var(--azul), var(--rosa)); }
+    .logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      letter-spacing: .03em;
+    }
+    .logo-main {
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 950;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-shadow: 0 0 22px rgba(255,255,255,.1);
+    }
+    .logo-main em {
+      color: var(--gold);
+      font-size: .48em;
+      font-style: italic;
+      font-weight: 500;
+      margin-left: -8px;
+      text-transform: none;
+    }
+    .logo-sub {
+      margin-top: 5px;
+      font-size: .72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--chalk);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: .84rem;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .nav-links a { color: var(--chalk); opacity: .88; }
+    .nav-links a:hover { color: var(--gold); opacity: 1; }
+
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--chalk);
+      background: rgba(255,255,255,.03);
+    }
+    .lang-toggle button {
+      border: 0;
+      padding: 8px 12px;
+      color: var(--chalk);
+      background: transparent;
+      font-weight: 950;
+      cursor: pointer;
+    }
+    .lang-toggle button.active { color: var(--black); background: var(--gold); }
 
     .hero {
       position: relative;
-      overflow: hidden;
-      min-height: 86vh;
+      min-height: 82vh;
       display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 46px;
+      grid-template-columns: 1fr 1.05fr;
+      gap: clamp(28px, 5vw, 70px);
       align-items: center;
-      padding: clamp(56px, 8vw, 108px) clamp(18px, 5vw, 72px);
+      padding: clamp(54px, 8vw, 105px) clamp(18px, 5vw, 70px) 62px;
       background:
-        radial-gradient(circle at 12% 20%, rgba(230,75,122,.16), transparent 28%),
-        radial-gradient(circle at 76% 14%, rgba(34,124,157,.18), transparent 28%),
-        radial-gradient(circle at 90% 82%, rgba(31,122,98,.16), transparent 26%),
-        linear-gradient(135deg, #fff 0%, #f6f0e5 45%, #111 45%, #111 100%);
+        radial-gradient(circle at 72% 50%, rgba(255,122,0,.18), transparent 26%),
+        radial-gradient(circle at 86% 42%, rgba(255,23,111,.13), transparent 22%),
+        linear-gradient(90deg, var(--black) 0%, var(--black) 48%, rgba(0,0,0,.72) 100%);
+      overflow: hidden;
     }
+
     .hero::before {
+      content: "✦";
+      position: absolute;
+      left: -85px;
+      top: 18%;
+      font-size: 340px;
+      line-height: 1;
+      color: rgba(247,241,223,.045);
+      transform: rotate(18deg);
+    }
+    .hero::after {
       content: "";
       position: absolute;
-      inset: 0;
-      background-image: radial-gradient(rgba(16,16,16,.12) 1px, transparent 1px);
-      background-size: 22px 22px;
-      opacity: .45;
-      pointer-events: none;
+      inset: auto -12% -32% auto;
+      width: 560px;
+      height: 560px;
+      border-radius: 50%;
+      border: 2px solid rgba(247,241,223,.06);
+      box-shadow: inset 0 0 0 30px rgba(255,255,255,.018);
     }
-    .hero-copy, .hero-card { position: relative; z-index: 1; }
-    .eyebrow { display: inline-flex; gap: 8px; align-items: center; padding: 8px 14px; border-radius: 999px; color: var(--black); background: rgba(255,255,255,.75); border: 1px solid rgba(16,16,16,.12); font-size: .82rem; font-weight: 950; text-transform: uppercase; letter-spacing: .09em; }
-    h1 { max-width: 820px; margin: 22px 0 18px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(3.2rem, 8vw, 7.5rem); line-height: .88; letter-spacing: -.06em; color: var(--black); }
-    .hero-subtitle { max-width: 660px; margin: 0 0 30px; font-size: clamp(1.08rem, 2vw, 1.28rem); color: rgba(16,16,16,.76); }
-    .hero-actions, .proof { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+    .hero-copy { position: relative; z-index: 2; max-width: 650px; }
+
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+      color: var(--turquoise);
+      font-weight: 950;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-size: .78rem;
+    }
+    .ornament::before,
+    .ornament::after {
+      content: "";
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--pink), var(--turquoise));
+    }
+
+    h1 {
+      margin: 0 0 22px;
+      max-width: 620px;
+      color: var(--white);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3.2rem, 7vw, 6.2rem);
+      line-height: .92;
+      letter-spacing: -.025em;
+      text-transform: uppercase;
+      text-shadow: 0 0 26px rgba(255,255,255,.08);
+    }
+
+    .subtitle {
+      max-width: 560px;
+      margin: 0 0 30px;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.18rem);
+    }
+
+    .hero-actions,
+    .proof-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+    }
     .hero-actions { margin-bottom: 30px; }
-    .proof-item { min-width: 132px; padding: 14px 16px; border-radius: 18px; background: rgba(255,255,255,.7); border: 1px solid rgba(16,16,16,.1); }
-    .proof-item strong { display: block; font-size: 1.35rem; }
 
-    .hero-card {
-      border-radius: 34px;
-      overflow: hidden;
-      background: var(--black);
-      color: var(--chalk);
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 22px;
+      border: 1px solid var(--border);
+      color: var(--white);
+      background: rgba(255,255,255,.04);
+      font-size: .86rem;
+      font-weight: 950;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      box-shadow: 0 16px 42px rgba(0,0,0,.28);
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); border-color: var(--gold); }
+    .btn.primary {
+      border-color: var(--pink);
+      background: linear-gradient(135deg, rgba(255,23,111,.88), rgba(180,0,74,.88));
+    }
+    .btn.teal { border-color: var(--turquoise); }
+
+    .proof-card {
+      min-width: 138px;
+      padding: 14px 16px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid var(--border);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+    }
+    .proof-card strong {
+      display: block;
+      color: var(--gold);
+      font-size: 1.3rem;
+      line-height: 1.1;
+    }
+    .proof-card span { color: var(--muted); font-size: .88rem; }
+
+    .hero-visual {
+      position: relative;
+      z-index: 2;
+      min-height: 520px;
+      border: 1px solid rgba(247,241,223,.16);
       box-shadow: var(--shadow);
-      border: 8px solid var(--chalk);
-    }
-    .storefront {
-      min-height: 470px;
-      display: grid;
-      align-content: end;
-      padding: 30px;
+      overflow: hidden;
       background:
-        linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.15)),
-        url("https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=80") center/cover;
+        linear-gradient(to top, rgba(0,0,0,.92), rgba(0,0,0,.18)),
+        radial-gradient(circle at 68% 46%, rgba(255,23,111,.18), transparent 24%),
+        radial-gradient(circle at 35% 55%, rgba(243,160,0,.17), transparent 24%),
+        #101010;
     }
-    .storefront h2 { margin: 0; font-family: Georgia, serif; font-size: 2.5rem; line-height: 1; }
 
-    section { padding: clamp(64px, 8vw, 110px) clamp(18px, 5vw, 72px); }
-    .section-heading { max-width: 860px; margin-bottom: 38px; }
-    .section-heading span { color: var(--terracotta); font-weight: 950; text-transform: uppercase; letter-spacing: .1em; font-size: .82rem; }
-    .section-heading h2 { margin: 10px 0 0; font-family: Georgia, serif; font-size: clamp(2.2rem, 5vw, 4.5rem); line-height: .98; letter-spacing: -.045em; }
+    .pattern-wall {
+      position: absolute;
+      inset: 0;
+      opacity: .6;
+      background:
+        linear-gradient(45deg, transparent 40%, rgba(0,199,187,.35) 40% 46%, transparent 46% 54%, rgba(255,23,111,.32) 54% 60%, transparent 60%),
+        linear-gradient(-45deg, transparent 40%, rgba(243,160,0,.33) 40% 46%, transparent 46% 54%, rgba(32,191,116,.25) 54% 60%, transparent 60%);
+      background-size: 100px 100px;
+      mask-image: radial-gradient(circle at 70% 38%, #000, transparent 60%);
+    }
 
-    .brand-strip { display: grid; grid-template-columns: repeat(4,1fr); min-height: 12px; }
-    .brand-strip div:nth-child(1){background:var(--maguey)} .brand-strip div:nth-child(2){background:var(--azul)} .brand-strip div:nth-child(3){background:var(--rosa)} .brand-strip div:nth-child(4){background:var(--maiz)}
+    .coffee-stage {
+      position: absolute;
+      inset: auto 8% 8% 8%;
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at 50% 58%, rgba(243,160,0,.2), transparent 44%);
+    }
 
-    .story-grid, .visit-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 24px; }
-    .card, .menu-card, .quote { border-radius: 30px; background: var(--white); box-shadow: 0 18px 60px rgba(0,0,0,.08); border: 1px solid rgba(16,16,16,.08); }
-    .card { padding: clamp(24px,4vw,44px); }
-    .card.dark { color: var(--chalk); background: var(--black); }
-    .card h3, .menu-card h3 { margin: 0 0 12px; font-family: Georgia, serif; font-size: 1.85rem; }
+    .cup {
+      position: relative;
+      width: min(330px, 70vw);
+      height: 210px;
+      border-radius: 0 0 90px 90px;
+      background: linear-gradient(135deg, #060606, #222 55%, #050505);
+      border: 4px solid rgba(247,241,223,.16);
+      box-shadow: 0 34px 80px rgba(0,0,0,.72);
+    }
+    .cup::before {
+      content: "";
+      position: absolute;
+      top: -42px;
+      left: 18px;
+      right: 18px;
+      height: 82px;
+      border-radius: 50%;
+      background:
+        radial-gradient(ellipse at center, #d8a46b 0 34%, #8d552b 35% 60%, #2a1409 61% 100%);
+      border: 5px solid #222;
+      box-shadow: inset 0 0 0 12px rgba(255,255,255,.08);
+    }
+    .cup::after {
+      content: "";
+      position: absolute;
+      right: -78px;
+      top: 44px;
+      width: 90px;
+      height: 88px;
+      border: 16px solid #151515;
+      border-left: 0;
+      border-radius: 0 70px 70px 0;
+    }
+    .cup-logo {
+      position: absolute;
+      left: 50%;
+      top: 74px;
+      transform: translateX(-50%);
+      color: rgba(247,241,223,.75);
+      font-family: Georgia, serif;
+      font-weight: 950;
+      font-size: 3rem;
+      letter-spacing: .05em;
+    }
+    .steam {
+      position: absolute;
+      width: 16px;
+      height: 150px;
+      top: -190px;
+      border-radius: 50%;
+      border-left: 3px solid rgba(247,241,223,.18);
+      filter: blur(.5px);
+      animation: steam 4s infinite ease-in-out;
+    }
+    .steam.s1 { left: 36%; animation-delay: 0s; }
+    .steam.s2 { left: 50%; height: 180px; animation-delay: .7s; }
+    .steam.s3 { left: 64%; animation-delay: 1.2s; }
+    @keyframes steam { 0%,100% { transform: translateY(12px) rotate(7deg); opacity:.2; } 50% { transform: translateY(-16px) rotate(-6deg); opacity:.55; } }
 
-    .menu { color: var(--chalk); background: var(--black); position: relative; overflow: hidden; }
-    .menu::before { content:"XOCO"; position:absolute; right:-20px; top:20px; font-size:18vw; font-weight:950; color:rgba(255,255,255,.035); letter-spacing:-.08em; }
-    .menu .section-heading h2 { color: var(--chalk); }
-    .menu .section-heading span { color: var(--maiz); }
-    .menu-grid { position: relative; display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-    .menu-card { padding: 28px; background: rgba(255,255,255,.065); color: var(--chalk); border-color: rgba(255,255,255,.13); box-shadow:none; }
-    .badge { display:inline-block; margin-bottom:14px; padding:6px 10px; border-radius:999px; color:var(--black); background:var(--maiz); font-size:.78rem; font-weight:950; text-transform:uppercase; letter-spacing:.08em; }
-    .menu-card ul { list-style:none; margin:18px 0 0; padding:0; }
-    .menu-card li { display:flex; justify-content:space-between; gap:16px; padding:12px 0; border-bottom:1px solid rgba(255,255,255,.14); }
-    .menu-card li:last-child { border-bottom:0; }
+    .sugar-skull {
+      position: absolute;
+      right: 5%;
+      top: 7%;
+      width: 150px;
+      height: 190px;
+      border: 3px solid var(--chalk);
+      border-radius: 48% 48% 40% 40%;
+      opacity: .75;
+      background:
+        radial-gradient(circle at 33% 42%, transparent 0 14px, var(--pink) 15px 17px, transparent 18px),
+        radial-gradient(circle at 67% 42%, transparent 0 14px, var(--turquoise) 15px 17px, transparent 18px),
+        radial-gradient(circle at 50% 62%, var(--gold) 0 4px, transparent 5px),
+        rgba(0,0,0,.18);
+    }
+    .sugar-skull::before,
+    .sugar-skull::after {
+      content: "";
+      position: absolute;
+      top: 68px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 3px solid var(--chalk);
+      background: #000;
+    }
+    .sugar-skull::before { left: 28px; }
+    .sugar-skull::after { right: 28px; }
+    .skull-teeth {
+      position: absolute;
+      bottom: 26px;
+      left: 50%;
+      width: 74px;
+      height: 18px;
+      transform: translateX(-50%);
+      border-top: 2px solid var(--chalk);
+      background: repeating-linear-gradient(90deg, transparent 0 8px, var(--chalk) 8px 10px);
+    }
 
-    .reviews-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:20px; }
-    .quote { padding:28px; background:#fffaf1; }
-    .quote p { margin:0; font-size:1.04rem; }
-    .quote strong { display:block; margin-top:16px; color:var(--terracotta); }
+    section { padding: clamp(62px, 8vw, 104px) clamp(18px, 5vw, 70px); position: relative; }
 
-    .visit { background: linear-gradient(135deg, #fff, #f3ece0); }
-    .visit-list { list-style:none; padding:0; margin:18px 0 0; }
-    .visit-list li { padding:12px 0; border-bottom:1px solid rgba(16,16,16,.1); }
-    .map-card { min-height:360px; border-radius:30px; display:grid; place-items:center; text-align:center; padding:28px; color:var(--chalk); background: linear-gradient(135deg, rgba(0,0,0,.82), rgba(31,122,98,.55)), url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80") center/cover; box-shadow:var(--shadow); }
-    .map-card h3 { margin:0; font-family:Georgia,serif; font-size:2.6rem; line-height:1; }
+    .section-heading {
+      max-width: 880px;
+      margin: 0 auto 38px;
+      text-align: center;
+    }
+    .section-heading .mini {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 13px;
+      color: var(--turquoise);
+      font-size: .82rem;
+      font-weight: 950;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .section-heading .mini::before,
+    .section-heading .mini::after {
+      content: "";
+      width: 44px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--pink), var(--gold));
+    }
+    .section-heading h2 {
+      margin: 0;
+      color: var(--white);
+      font-family: Georgia, serif;
+      font-size: clamp(2.15rem, 5vw, 4.1rem);
+      line-height: 1;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+    .section-heading p { max-width: 720px; margin: 18px auto 0; color: var(--muted); }
 
-    footer { padding:34px clamp(18px,5vw,72px); display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; color:var(--chalk); background:var(--black); }
+    .story-grid {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+    .story-card,
+    .menu-card,
+    .review-card,
+    .visit-card {
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.02));
+      box-shadow: 0 22px 70px rgba(0,0,0,.28);
+    }
+    .story-card { padding: clamp(24px,4vw,42px); }
+    .story-card h3,
+    .visit-card h3 {
+      margin: 0 0 12px;
+      color: var(--white);
+      font-family: Georgia, serif;
+      font-size: 1.9rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .story-card p,
+    .visit-card p { color: var(--muted); margin: 0; }
+    .story-card.color {
+      background:
+        linear-gradient(135deg, rgba(255,23,111,.17), rgba(0,199,187,.08)),
+        rgba(255,255,255,.035);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    .menu-card {
+      overflow: hidden;
+      transition: transform .2s ease, border-color .2s ease;
+    }
+    .menu-card:hover { transform: translateY(-6px); border-color: var(--gold); }
+    .menu-image {
+      height: 150px;
+      background:
+        radial-gradient(circle at 50% 52%, rgba(243,160,0,.35), transparent 26%),
+        linear-gradient(135deg, rgba(0,199,187,.1), rgba(255,23,111,.12)),
+        #111;
+      display: grid;
+      place-items: center;
+      font-size: 4rem;
+    }
+    .menu-body { padding: 20px; text-align: center; }
+    .flower { color: var(--pink); font-size: 1.4rem; line-height: 1; }
+    .menu-card:nth-child(2) .flower { color: var(--gold); }
+    .menu-card:nth-child(3) .flower { color: var(--turquoise); }
+    .menu-card:nth-child(4) .flower { color: var(--green); }
+    .menu-card:nth-child(5) .flower { color: var(--orange); }
+    .menu-body h3 {
+      margin: 8px 0 8px;
+      color: var(--white);
+      font-family: Georgia, serif;
+      font-size: 1.14rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .menu-body p { min-height: 58px; margin: 0 0 14px; color: var(--muted); font-size: .9rem; }
+    .price { color: var(--gold); font-size: 1.35rem; font-weight: 950; }
+
+    .center-action { margin-top: 28px; text-align: center; }
+
+    .reviews {
+      background:
+        radial-gradient(circle at 0% 50%, rgba(255,23,111,.12), transparent 28%),
+        radial-gradient(circle at 100% 50%, rgba(0,199,187,.1), transparent 28%),
+        var(--black);
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+    .review-card { padding: 24px; }
+    .stars { color: var(--gold); letter-spacing: .08em; margin-bottom: 14px; }
+    .review-card p { color: var(--chalk); margin: 0 0 18px; }
+    .review-card strong { color: var(--white); }
+    .review-card a { display: inline-block; margin-top: 12px; color: var(--pink); font-weight: 850; font-size: .9rem; }
+
+    .visit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .visit-card { padding: 30px; }
+    .visit-icon { color: var(--turquoise); font-size: 2.2rem; margin-bottom: 12px; }
+    .visit-card:nth-child(2) .visit-icon { color: var(--pink); }
+    .visit-card:nth-child(3) .visit-icon { color: var(--gold); }
+    .visit-card ul { list-style: none; padding: 0; margin: 12px 0 0; color: var(--muted); }
+    .visit-card li { padding: 6px 0; }
+    .visit-card a { color: var(--turquoise); font-weight: 900; }
+
+    .footer {
+      padding: 42px clamp(18px, 5vw, 70px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      background: var(--black);
+      border-top: 1px solid var(--border);
+    }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; color: var(--muted); font-size: .9rem; }
 
     [data-lang="en"] { display: none; }
-    body.english [data-lang="de"] { display:none; }
+    body.english [data-lang="de"] { display: none; }
     body.english [data-lang="en"] { display: revert; }
 
-    @media (max-width: 920px) {
-      nav { display:none; }
-      .hero, .story-grid, .visit-grid { grid-template-columns:1fr; }
-      .hero { background: linear-gradient(135deg, #fff 0%, #f6f0e5 70%, #111 70%); }
-      .menu-grid, .reviews-grid { grid-template-columns:1fr; }
-      .top-pattern { grid-template-columns: repeat(5, 1fr); }
-      .bean:nth-child(n+6) { display:none; }
+    @media (max-width: 1080px) {
+      .menu-grid { grid-template-columns: repeat(2, 1fr); }
+      .visit-grid, .reviews-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 900px) {
+      .nav-links a { display: none; }
+      .hero, .story-grid { grid-template-columns: 1fr; }
+      .hero-visual { min-height: 430px; }
+      .top-illustration { grid-template-columns: 1fr 90px 1fr; }
+      .skull-top { width: 58px; height: 58px; }
+      h1 { font-size: clamp(2.8rem, 16vw, 4.8rem); }
+    }
+    @media (max-width: 560px) {
+      .menu-grid { grid-template-columns: 1fr; }
+      .logo-sub { display: none; }
+      .cup { width: 250px; height: 170px; }
+      .cup::after { display: none; }
+      .cup-logo { font-size: 2.2rem; }
+      .sugar-skull { width: 110px; height: 145px; opacity: .55; }
     }
   </style>
 </head>
+
 <body>
-  <div class="top-pattern" aria-hidden="true">
-    <div class="bean" style="--r:-22deg;--o:.85">☕</div><div class="bean" style="--r:14deg;--o:.75">◖</div><div class="bean" style="--r:-12deg;--o:.9">❧</div><div class="bean" style="--r:20deg;--o:.72">◗</div><div class="bean" style="--r:0deg;--o:1">XOCO</div><div class="bean" style="--r:-18deg;--o:.78">◖</div><div class="bean" style="--r:12deg;--o:.9">❧</div><div class="bean" style="--r:-9deg;--o:.7">☕</div><div class="bean" style="--r:16deg;--o:.8">◗</div>
+  <div class="top-illustration" aria-hidden="true">
+    <div class="vine"></div>
+    <div class="skull-top"><span class="skull-mouth"></span></div>
+    <div class="vine"></div>
   </div>
 
-  <header class="topbar">
-    <a class="brand" href="#top"><span class="brand-mark">X</span><span>XOCO Café</span></a>
-    <nav>
+  <header class="nav">
+    <a class="logo" href="#start" aria-label="XOCO Café Startseite">
+      <span class="logo-main">XOCO <em>Café</em></span>
+      <span class="logo-sub">Mexikanische Kaffeerösterei & Schokoladenmanufaktur</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Navigation">
+      <a href="#start" data-lang="de">Start</a><a href="#start" data-lang="en">Home</a>
       <a href="#menu" data-lang="de">Menü</a><a href="#menu" data-lang="en">Menu</a>
-      <a href="#reviews" data-lang="de">Bewertungen</a><a href="#reviews" data-lang="en">Reviews</a>
-      <a href="#visit" data-lang="de">Besuchen</a><a href="#visit" data-lang="en">Visit</a>
-      <div class="lang-toggle" aria-label="Language toggle"><button class="active" id="deBtn">DE</button><button id="enBtn">EN</button></div>
+      <a href="#roesterei" data-lang="de">Rösterei</a><a href="#roesterei" data-lang="en">Roastery</a>
+      <a href="#bewertungen" data-lang="de">Bewertungen</a><a href="#bewertungen" data-lang="en">Reviews</a>
+      <a href="#kontakt" data-lang="de">Kontakt</a><a href="#kontakt" data-lang="en">Contact</a>
+      <div class="lang-toggle" aria-label="Sprache wechseln">
+        <button class="active" id="deBtn" type="button">DE</button>
+        <button id="enBtn" type="button">EN</button>
+      </div>
     </nav>
   </header>
 
-  <main id="top">
+  <main id="start">
     <section class="hero">
       <div class="hero-copy">
-        <span class="eyebrow" data-lang="de">Mexikanische Kaffeerösterei & Schokoladenmanufaktur</span>
-        <span class="eyebrow" data-lang="en">Mexican coffee roastery & chocolate manufactory</span>
-        <h1 data-lang="de">Mexikanische Wärme. In Nürnberg geröstet.</h1>
-        <h1 data-lang="en">Mexican warmth. Roasted in Nürnberg.</h1>
-        <p class="hero-subtitle" data-lang="de">Ein frischer Website-Entwurf für XOCO Café: handgemachter Kakao, mexikanischer Kaffee, gemütliche Atmosphäre und ein Hauch Farbe zwischen Schwarz, Weiß und Schokolade.</p>
-        <p class="hero-subtitle" data-lang="en">A fresh landing page concept for XOCO Café: handmade cacao, Mexican coffee, cozy atmosphere, and vibrant color accents between black, white, and chocolate.</p>
+        <div class="ornament" data-lang="de">Mexiko · Kaffee · Kultur</div>
+        <div class="ornament" data-lang="en">Mexico · Coffee · Culture</div>
+
+        <h1 data-lang="de">Mexiko. Kaffee. Leidenschaft.</h1>
+        <h1 data-lang="en">Mexico. Coffee. Passion.</h1>
+
+        <p class="subtitle" data-lang="de">
+          Bei XOCO Café verbinden wir mexikanische Kaffeekultur mit traditioneller Handwerkskunst. Unsere Bohnen und Kakaobohnen rösten wir selbst — für authentischen Geschmack, kräftige Aromen und echte Qualität.
+        </p>
+        <p class="subtitle" data-lang="en">
+          At XOCO Café, Mexican coffee culture meets traditional craftsmanship. We roast coffee beans and cacao beans ourselves — for authentic flavor, deep aroma, and honest quality.
+        </p>
+
         <div class="hero-actions">
-          <a class="btn color" href="#menu" data-lang="de">Menü ansehen</a><a class="btn color" href="#menu" data-lang="en">View menu</a>
-          <a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=XOCO%20Caf%C3%A9%20Vordere%20Sterngasse%2020%2090402%20N%C3%BCrnberg" target="_blank" rel="noopener" data-lang="de">Route öffnen</a>
-          <a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=XOCO%20Caf%C3%A9%20Vordere%20Sterngasse%2020%2090402%20N%C3%BCrnberg" target="_blank" rel="noopener" data-lang="en">Open in Maps</a>
+          <a class="btn primary" href="#menu" data-lang="de">Unsere Speisekarte</a>
+          <a class="btn primary" href="#menu" data-lang="en">View Menu</a>
+          <a class="btn teal" href="#roesterei" data-lang="de">Über uns</a>
+          <a class="btn teal" href="#roesterei" data-lang="en">About Us</a>
         </div>
-        <div class="proof">
-          <div class="proof-item"><strong>4.7★</strong><span data-lang="de">634 Google-Bewertungen</span><span data-lang="en">634 Google reviews</span></div>
-          <div class="proof-item"><strong>€1–10</strong><span data-lang="de">Preisbereich</span><span data-lang="en">Price range</span></div>
-          <div class="proof-item"><strong>Dine-in</strong><span data-lang="de">& Takeaway</span><span data-lang="en">& takeaway</span></div>
+
+        <div class="proof-row">
+          <div class="proof-card"><strong>4.7★</strong><span data-lang="de">634 Google-Bewertungen</span><span data-lang="en">634 Google reviews</span></div>
+          <div class="proof-card"><strong>€1–10</strong><span data-lang="de">pro Person</span><span data-lang="en">per person</span></div>
+          <div class="proof-card"><strong>90402</strong><span>Nürnberg</span></div>
         </div>
       </div>
-      <aside class="hero-card"><div class="storefront"><h2 data-lang="de">Kaffee. Kakao. Zuhause.</h2><h2 data-lang="en">Coffee. Cacao. Home.</h2><p data-lang="de">Inspiriert von mexikanischen Kakao-Traditionen und dem handgemachten Charakter des Cafés.</p><p data-lang="en">Inspired by Mexican cacao traditions and the café’s handmade character.</p></div></aside>
+
+      <div class="hero-visual" aria-label="XOCO Café visuelle Markenwelt">
+        <div class="pattern-wall"></div>
+        <div class="sugar-skull"><span class="skull-teeth"></span></div>
+        <div class="coffee-stage">
+          <div class="cup">
+            <span class="steam s1"></span><span class="steam s2"></span><span class="steam s3"></span>
+            <div class="cup-logo">XOCO</div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <div class="brand-strip"><div></div><div></div><div></div><div></div></div>
+    <div class="aztec-border"></div>
 
-    <section id="story">
-      <div class="section-heading"><span data-lang="de">Das XOCO-Gefühl</span><span data-lang="en">The XOCO feeling</span><h2 data-lang="de">Schwarz-weiß wie das Logo. Lebendig wie Mexiko.</h2><h2 data-lang="en">Black and white like the logo. Vibrant like Mexico.</h2></div>
+    <section id="roesterei">
+      <div class="section-heading">
+        <span class="mini" data-lang="de">Rösterei & Schokolade</span>
+        <span class="mini" data-lang="en">Roastery & Chocolate</span>
+        <h2 data-lang="de">Licht, Dunkelheit und mexikanische Seele.</h2>
+        <h2 data-lang="en">Light, darkness, and Mexican soul.</h2>
+        <p data-lang="de">Die visuelle Richtung dieser Seite baut auf dem XOCO-Kontrast auf: weißes Lettering, schwarzer Hintergrund, Kreide-Ästhetik, Kaffeebohnen und mystische Untertöne von Día de los Muertos, geometrischer Symmetrie und handgemachter Kaffeekultur.</p>
+        <p data-lang="en">This visual direction builds on XOCO’s contrast: white lettering, black background, chalk aesthetics, coffee beans, and mystical undertones of Día de los Muertos, geometric symmetry, and handmade coffee culture.</p>
+      </div>
+
       <div class="story-grid">
-        <article class="card dark"><h3 data-lang="de">Markenrichtung</h3><h3 data-lang="en">Brand direction</h3><p data-lang="de">Die Basis bleibt klar: Schwarz, Weiß, Kreidetafel, Kakaobohnen und Handwerk. Dazu kommen kleine Akzente in Grün, Blau, Rosa und Maisgelb — nicht laut, sondern gezielt.</p><p data-lang="en">The base stays clear: black, white, chalkboard, cacao beans, and craftsmanship. Then come focused accents of green, blue, pink, and maize yellow.</p></article>
-        <article class="card"><h3 data-lang="de">Warum es funktioniert</h3><h3 data-lang="en">Why it works</h3><p data-lang="de">Die Seite führt Gäste schnell zu den wichtigsten Punkten: Menü, Bewertungen und Besuch. Gleichzeitig fühlt sie sich nicht wie eine generische Café-Website an, sondern wie XOCO: warm, mexikanisch, handgemacht und persönlich.</p><p data-lang="en">The page quickly guides guests to the essentials: menu, reviews, and visit information. It also avoids looking generic and keeps the XOCO feeling: warm, Mexican, handmade, and personal.</p></article>
+        <article class="story-card color">
+          <h3 data-lang="de">Das Erlebnis</h3>
+          <h3 data-lang="en">The Experience</h3>
+          <p data-lang="de">XOCO soll sich digital so anfühlen wie der Laden: warm, dunkel, aromatisch, handgemacht — mit kleinen leuchtenden Momenten, die an mexikanische Muster, Totenkopf-Silhouetten, Kerzenlicht und frischen Kaffee erinnern.</p>
+          <p data-lang="en">XOCO should feel online like it feels in person: warm, dark, aromatic, handmade — with small glowing moments inspired by Mexican patterns, skull silhouettes, candlelight, and fresh coffee.</p>
+        </article>
+        <article class="story-card">
+          <h3 data-lang="de">Die Marke</h3>
+          <h3 data-lang="en">The Brand</h3>
+          <p data-lang="de">Schwarz und Weiß bleiben die Hauptfarben. Türkis, Pink, Orange, Grün und Maisgelb werden nur als Akzente eingesetzt: in Linien, geometrischen Rändern, Blumen, Preisen und Call-to-Action-Elementen.</p>
+          <p data-lang="en">Black and white remain the main colors. Turquoise, pink, orange, green, and maize yellow appear only as accents: in lines, geometric borders, flowers, prices, and call-to-action elements.</p>
+        </article>
       </div>
     </section>
 
-    <section class="menu" id="menu">
-      <div class="section-heading"><span data-lang="de">Menü-Highlights</span><span data-lang="en">Menu highlights</span><h2 data-lang="de">Kaffee, Kakao, Kuchen und mexikanischer Komfort.</h2><h2 data-lang="en">Coffee, cacao, cake, and Mexican comfort.</h2></div>
+    <div class="aztec-border"></div>
+
+    <section id="menu">
+      <div class="section-heading">
+        <span class="mini" data-lang="de">Unsere Highlights</span>
+        <span class="mini" data-lang="en">Our Highlights</span>
+        <h2 data-lang="de">Speisekarte</h2>
+        <h2 data-lang="en">Menu</h2>
+      </div>
+
       <div class="menu-grid">
-        <article class="menu-card"><span class="badge">Coffee</span><h3>Kaffee</h3><ul><li><span>Cappuccino</span><strong>Popular</strong></li><li><span>Flat White</span><strong>Popular</strong></li><li><span>Iced Latte Macchiato</span><strong>Sommer</strong></li><li><span>Affogato</span><strong>Süß</strong></li></ul></article>
-        <article class="menu-card"><span class="badge">Cacao</span><h3>Kakao & Schokolade</h3><ul><li><span>Kakao</span><strong>Popular</strong></li><li><span>Chocolat Chaud</span><strong>Popular</strong></li><li><span>Klassische Schokolade</span><strong>Haus</strong></li><li><span>Ice Chocolate</span><strong>Sommer</strong></li></ul></article>
-        <article class="menu-card"><span class="badge">Sweets</span><h3>Kuchen & Snacks</h3><ul><li><span>Karottenkuchen</span><strong>Popular</strong></li><li><span>Schokokuchen</span><strong>Reich</strong></li><li><span>Apple Cake</span><strong>Gemütlich</strong></li><li><span>Empanada</span><strong>Herzhaft</strong></li></ul></article>
+        <article class="menu-card">
+          <div class="menu-image">☕</div>
+          <div class="menu-body">
+            <div class="flower">✿</div>
+            <h3>Cappuccino</h3>
+            <p data-lang="de">Cremig, ausgewogen, mit unseren hausgerösteten Bohnen.</p>
+            <p data-lang="en">Creamy, balanced, made with our house-roasted beans.</p>
+            <div class="price">3,40 €</div>
+          </div>
+        </article>
+
+        <article class="menu-card">
+          <div class="menu-image">🍫</div>
+          <div class="menu-body">
+            <div class="flower">✿</div>
+            <h3 data-lang="de">Klassische Schokolade</h3>
+            <h3 data-lang="en">Classic Chocolate</h3>
+            <p data-lang="de">Dicke, warme Schokolade aus 100% Kakao.</p>
+            <p data-lang="en">Thick, warm chocolate made with 100% cacao.</p>
+            <div class="price">4,20 €</div>
+          </div>
+        </article>
+
+        <article class="menu-card">
+          <div class="menu-image">🍰</div>
+          <div class="menu-body">
+            <div class="flower">✿</div>
+            <h3>Schokokuchen</h3>
+            <p data-lang="de">Saftig, intensiv, ein Stück Mexiko.</p>
+            <p data-lang="en">Rich, intense, a small piece of Mexico.</p>
+            <div class="price">3,90 €</div>
+          </div>
+        </article>
+
+        <article class="menu-card">
+          <div class="menu-image">🧊</div>
+          <div class="menu-body">
+            <div class="flower">✿</div>
+            <h3>Iced Latte Macchiato</h3>
+            <p data-lang="de">Erfrischend, sanft, perfekt für warme Tage.</p>
+            <p data-lang="en">Refreshing, smooth, perfect for warm days.</p>
+            <div class="price">4,10 €</div>
+          </div>
+        </article>
+
+        <article class="menu-card">
+          <div class="menu-image">🥟</div>
+          <div class="menu-body">
+            <div class="flower">✿</div>
+            <h3>Empanada</h3>
+            <p data-lang="de">Hausgemacht und herzhaft — mit Liebe zubereitet.</p>
+            <p data-lang="en">Homemade and savory — prepared with care.</p>
+            <div class="price">4,50 €</div>
+          </div>
+        </article>
+      </div>
+
+      <div class="center-action">
+        <a class="btn" href="https://www.google.com/search?q=XOCO+Caf%C3%A9+N%C3%BCrnberg+menu" target="_blank" rel="noopener" data-lang="de">Gesamte Speisekarte ansehen</a>
+        <a class="btn" href="https://www.google.com/search?q=XOCO+Caf%C3%A9+N%C3%BCrnberg+menu" target="_blank" rel="noopener" data-lang="en">View full menu</a>
       </div>
     </section>
 
-    <section id="reviews">
-      <div class="section-heading"><span data-lang="de">Google-Bewertungen</span><span data-lang="en">Google reviews</span><h2 data-lang="de">Was Gäste über XOCO sagen.</h2><h2 data-lang="en">What guests say about XOCO.</h2></div>
+    <section class="reviews" id="bewertungen">
+      <div class="section-heading">
+        <span class="mini" data-lang="de">Das sagen unsere Gäste</span>
+        <span class="mini" data-lang="en">What our guests say</span>
+        <h2 data-lang="de">Google Bewertungen</h2>
+        <h2 data-lang="en">Google Reviews</h2>
+      </div>
+
       <div class="reviews-grid">
-        <article class="quote"><p>“Great atmosphere, very friendly people, and good service.”</p><strong>Google Review Theme</strong></article>
-        <article class="quote"><p>“Cozy place, homemade chocolate, nice decoration, and the coffee is just great.”</p><strong>Google Review Theme</strong></article>
-        <article class="quote"><p>“The hot chocolate is incredibly tasty. The decoration is unique and cozy.”</p><strong>Google Review Theme</strong></article>
+        <article class="review-card">
+          <div class="stars">★★★★★</div>
+          <strong>Lukas T.</strong>
+          <p data-lang="de">Das Café hat die beste heiße Schokolade, die man finden kann. Der Besitzer röstet Kaffee sowie Kakaobohnen und hat eine köstliche Auswahl zum Mitnehmen.</p>
+          <p data-lang="en">The café has the best hot chocolate you can find. The owner roasts coffee and cacao beans and has a delicious selection to take home.</p>
+          <a href="https://www.google.com/search?q=XOCO+Caf%C3%A9+N%C3%BCrnberg+reviews" target="_blank" rel="noopener" data-lang="de">Weiterlesen auf Google</a>
+          <a href="https://www.google.com/search?q=XOCO+Caf%C3%A9+N%C3%BCrnberg+reviews" target="_blank" rel="noopener" data-lang="en">Read more on Google</a>
+        </article>
+
+        <article class="review-card">
+          <div class="stars">★★★★★</div>
+          <strong>Juan L. H. Cruz</strong>
+          <p data-lang="de">Wunderbarer mexikanischer Kaffee und authentische mexikanische Schokolade. Die Desserts sind ebenfalls großartig. 100% empfehlenswert.</p>
+          <p data-lang="en">Wonderful Mexican coffee and authentic Mexican chocolate. The desserts are also great. 100% recommended.</p>
+          <a href="https://www.google.com/search?q=XOCO+Caf%C3%A9+N%C3%BCrnberg+reviews" target="_blank" rel="noopener" data-lang="de">Weiterlesen auf Google</a>
+          <a href="https://www.google.com/search?q=XOCO+Caf%C3%A9+N%C3%BCrnberg+reviews" target="_blank" rel="noopener" data-lang="en">Read more on Google</a>
+        </article>
+
+        <article class="review-card">
+          <div class="stars">★★★★★</div>
+          <strong>nopitynah</strong>
+          <p data-lang="de">Ihre heiße Schokolade ist unglaublich lecker. Die Dekoration des Cafés ist einzigartig und gemütlich. Es hat auch Spaß gemacht, auf Spanisch zu bestellen.</p>
+          <p data-lang="en">Their hot chocolate is incredibly tasty. The café decoration is unique and cozy. It was also fun to order in Spanish.</p>
+          <a href="https://www.google.com/search?q=XOCO+Caf%C3%A9+N%C3%BCrnberg+reviews" target="_blank" rel="noopener" data-lang="de">Weiterlesen auf Google</a>
+          <a href="https://www.google.com/search?q=XOCO+Caf%C3%A9+N%C3%BCrnberg+reviews" target="_blank" rel="noopener" data-lang="en">Read more on Google</a>
+        </article>
       </div>
-      <p style="margin-top:28px"><a class="btn" href="https://www.google.com/search?q=XOCO+Caf%C3%A9+N%C3%BCrnberg+reviews" target="_blank" rel="noopener" data-lang="de">Google-Bewertungen öffnen</a><a class="btn" href="https://www.google.com/search?q=XOCO+Caf%C3%A9+N%C3%BCrnberg+reviews" target="_blank" rel="noopener" data-lang="en">Open Google reviews</a></p>
+
+      <div class="center-action">
+        <a class="btn teal" href="https://www.google.com/search?q=XOCO+Caf%C3%A9+N%C3%BCrnberg+reviews" target="_blank" rel="noopener" data-lang="de">Alle 634 Google Bewertungen ansehen</a>
+        <a class="btn teal" href="https://www.google.com/search?q=XOCO+Caf%C3%A9+N%C3%BCrnberg+reviews" target="_blank" rel="noopener" data-lang="en">View all 634 Google reviews</a>
+      </div>
     </section>
 
-    <section class="visit" id="visit">
-      <div class="section-heading"><span data-lang="de">Besuchen Sie uns</span><span data-lang="en">Visit us</span><h2 data-lang="de">XOCO Café in der Nürnberger Innenstadt.</h2><h2 data-lang="en">XOCO Café in Nürnberg city center.</h2></div>
+    <div class="aztec-border"></div>
+
+    <section id="kontakt">
+      <div class="section-heading">
+        <span class="mini" data-lang="de">Besucht uns</span>
+        <span class="mini" data-lang="en">Visit us</span>
+        <h2 data-lang="de">XOCO Café Nürnberg</h2>
+        <h2 data-lang="en">XOCO Café Nürnberg</h2>
+      </div>
+
       <div class="visit-grid">
-        <article class="card"><h3>XOCO Café GmbH</h3><p data-lang="de">Mexikanische Kaffeerösterei & Schokoladenmanufaktur im Herzen von Nürnberg.</p><p data-lang="en">Mexican coffee roastery and chocolate manufactory in the heart of Nürnberg.</p><ul class="visit-list"><li><strong>Adresse:</strong> Vordere Sterngasse 20, 90402 Nürnberg</li><li><strong>Service:</strong> Dine-in & Takeaway</li><li><strong>Bekannt für:</strong> mexikanischen Kaffee, Kakao, heiße Schokolade, Kuchen, Empanadas</li><li><strong>Preisbereich:</strong> €1–10 pro Person</li></ul><p style="margin-top:24px"><a class="btn color" href="https://www.google.com/maps/search/?api=1&query=XOCO%20Caf%C3%A9%20Vordere%20Sterngasse%2020%2090402%20N%C3%BCrnberg" target="_blank" rel="noopener" data-lang="de">Route planen</a><a class="btn color" href="https://www.google.com/maps/search/?api=1&query=XOCO%20Caf%C3%A9%20Vordere%20Sterngasse%2020%2090402%20N%C3%BCrnberg" target="_blank" rel="noopener" data-lang="en">Get directions</a></p></article>
-        <aside class="map-card"><div><h3>Vordere Sterngasse 20</h3><p data-lang="de">Ideal für einen Frühlingsspaziergang, einen sommerlichen Ice Chocolate oder einen langsamen Nachmittag mit Kaffee.</p><p data-lang="en">Perfect for a spring walk, summer ice chocolate, or a slow afternoon coffee.</p></div></aside>
+        <article class="visit-card">
+          <div class="visit-icon">⌖</div>
+          <h3 data-lang="de">Adresse</h3>
+          <h3 data-lang="en">Address</h3>
+          <p>Vordere Sterngasse 20<br>90402 Nürnberg<br>Deutschland</p>
+          <p style="margin-top:16px"><a href="https://www.google.com/maps/search/?api=1&query=XOCO%20Caf%C3%A9%20Vordere%20Sterngasse%2020%2090402%20N%C3%BCrnberg" target="_blank" rel="noopener" data-lang="de">Auf Google Maps ansehen</a><a href="https://www.google.com/maps/search/?api=1&query=XOCO%20Caf%C3%A9%20Vordere%20Sterngasse%2020%2090402%20N%C3%BCrnberg" target="_blank" rel="noopener" data-lang="en">Open in Google Maps</a></p>
+        </article>
+
+        <article class="visit-card">
+          <div class="visit-icon">◷</div>
+          <h3 data-lang="de">Öffnungszeiten</h3>
+          <h3 data-lang="en">Opening Hours</h3>
+          <ul data-lang="de">
+            <li>Mo – Fr: 08:00 – 18:00 Uhr</li>
+            <li>Sa: 11:00 – 18:00 Uhr</li>
+            <li>So: Geschlossen</li>
+            <li>Feiertage können abweichen.</li>
+          </ul>
+          <ul data-lang="en">
+            <li>Mon – Fri: 08:00 – 18:00</li>
+            <li>Sat: 11:00 – 18:00</li>
+            <li>Sun: Closed</li>
+            <li>Public holidays may differ.</li>
+          </ul>
+        </article>
+
+        <article class="visit-card">
+          <div class="visit-icon">☎</div>
+          <h3 data-lang="de">So erreicht ihr uns</h3>
+          <h3 data-lang="en">Reach us</h3>
+          <p data-lang="de">Derzeit keine Telefonnummer verfügbar. Folgt uns für Updates oder schaut direkt im Café vorbei.</p>
+          <p data-lang="en">No phone number currently available. Follow for updates or visit the café directly.</p>
+          <p style="margin-top:16px"><a href="https://www.google.com/search?q=XOCO+Caf%C3%A9+N%C3%BCrnberg" target="_blank" rel="noopener">XOCO Café online suchen</a></p>
+        </article>
       </div>
     </section>
   </main>
 
-  <footer><strong>XOCO Café — 2026 Landing Page Concept</strong><span data-lang="de">Ein respektvoller Website-Entwurf zur Präsentation.</span><span data-lang="en">A respectful website concept for presentation.</span></footer>
+  <div class="aztec-border"></div>
+
+  <footer class="footer">
+    <a class="logo" href="#start">
+      <span class="logo-main">XOCO <em>Café</em></span>
+      <span class="logo-sub" data-lang="de">Mexiko im Herzen. Kaffee in Perfektion.</span>
+      <span class="logo-sub" data-lang="en">Mexico at heart. Coffee in craft.</span>
+    </a>
+
+    <div class="footer-links">
+      <a href="#start">Start</a>
+      <a href="#menu" data-lang="de">Menü</a><a href="#menu" data-lang="en">Menu</a>
+      <a href="#roesterei" data-lang="de">Rösterei</a><a href="#roesterei" data-lang="en">Roastery</a>
+      <a href="#kontakt" data-lang="de">Kontakt</a><a href="#kontakt" data-lang="en">Contact</a>
+      <span>Impressum</span>
+      <span>Datenschutz</span>
+    </div>
+  </footer>
 
   <script>
     const deBtn = document.getElementById('deBtn');
     const enBtn = document.getElementById('enBtn');
-    deBtn.addEventListener('click', () => { document.body.classList.remove('english'); deBtn.classList.add('active'); enBtn.classList.remove('active'); document.documentElement.lang = 'de'; });
-    enBtn.addEventListener('click', () => { document.body.classList.add('english'); enBtn.classList.add('active'); deBtn.classList.remove('active'); document.documentElement.lang = 'en'; });
+
+    deBtn.addEventListener('click', () => {
+      document.body.classList.remove('english');
+      deBtn.classList.add('active');
+      enBtn.classList.remove('active');
+      document.documentElement.lang = 'de';
+    });
+
+    enBtn.addEventListener('click', () => {
+      document.body.classList.add('english');
+      enBtn.classList.add('active');
+      deBtn.classList.remove('active');
+      document.documentElement.lang = 'en';
+    });
   </script>
 </body>
 </html>
+
