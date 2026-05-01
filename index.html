@@ -577,9 +577,11 @@
     }
     .footer-links { display: flex; gap: 24px; flex-wrap: wrap; color: var(--muted); font-size: .9rem; }
 
-    [data-lang="en"] { display: none; }
+    [data-lang="en"], [data-lang="es"] { display: none; }
     body.english [data-lang="de"] { display: none; }
     body.english [data-lang="en"] { display: revert; }
+    body.spanish [data-lang="es"] { display: revert; }
+    body.spanish [data-lang="de"], body.spanish [data-lang="en"] { display:none; }
 
     @media (max-width: 1080px) {
       .menu-grid { grid-template-columns: repeat(2, 1fr); }
@@ -633,6 +635,7 @@
       <div class="lang-toggle" aria-label="Sprache wechseln">
         <button class="active" id="deBtn" type="button">DE</button>
         <button id="enBtn" type="button">EN</button>
+        <button id="esBtn" type="button">ES</button>
       </div>
     </nav>
   </header>
@@ -645,19 +648,26 @@
 
         <h1 data-lang="de">Mexiko. Kaffee. Leidenschaft.</h1>
         <h1 data-lang="en">Mexico. Coffee. Passion.</h1>
+        <h1 data-lang="es">México. Café. Pasión.</h1>
 
         <p class="subtitle" data-lang="de">
           Bei XOCO Café verbinden wir mexikanische Kaffeekultur mit traditioneller Handwerkskunst. Unsere Bohnen und Kakaobohnen rösten wir selbst — für authentischen Geschmack, kräftige Aromen und echte Qualität.
         </p>
         <p class="subtitle" data-lang="en">
-          At XOCO Café, Mexican coffee culture meets traditional craftsmanship. We roast coffee beans and cacao beans ourselves — for authentic flavor, deep aroma, and honest quality.
+          At XOCO Café, Mexican coffee culture meets traditional craftsmanship.
+        </p>
+        <p class="subtitle" data-lang="es">
+          En XOCO Café unimos la cultura cafetera mexicana con la artesanía tradicional. Tostamos nuestro propio café y cacao para lograr un sabor auténtico y una experiencia única.
+        </p> We roast coffee beans and cacao beans ourselves — for authentic flavor, deep aroma, and honest quality.
         </p>
 
         <div class="hero-actions">
           <a class="btn primary" href="#menu" data-lang="de">Unsere Speisekarte</a>
           <a class="btn primary" href="#menu" data-lang="en">View Menu</a>
+          <a class="btn primary" href="#menu" data-lang="es">Ver menú</a>
           <a class="btn teal" href="#roesterei" data-lang="de">Über uns</a>
           <a class="btn teal" href="#roesterei" data-lang="en">About Us</a>
+          <a class="btn teal" href="#roesterei" data-lang="es">Nuestra historia</a>
         </div>
 
         <div class="proof-row">
@@ -710,8 +720,10 @@
       <div class="section-heading">
         <span class="mini" data-lang="de">Unsere Highlights</span>
         <span class="mini" data-lang="en">Our Highlights</span>
+        <span class="mini" data-lang="es">Nuestros favoritos</span></span>
         <h2 data-lang="de">Speisekarte</h2>
         <h2 data-lang="en">Menu</h2>
+        <h2 data-lang="es">Menú</h2>
       </div>
 
       <div class="menu-grid">
@@ -784,6 +796,7 @@
         <span class="mini" data-lang="en">What our guests say</span>
         <h2 data-lang="de">Google Bewertungen</h2>
         <h2 data-lang="en">Google Reviews</h2>
+        <h2 data-lang="es">Opiniones de Google</h2>
       </div>
 
       <div class="reviews-grid">
@@ -827,7 +840,9 @@
       <div class="section-heading">
         <span class="mini" data-lang="de">Besucht uns</span>
         <span class="mini" data-lang="en">Visit us</span>
+        <span class="mini" data-lang="es">Visítanos</span></span>
         <h2 data-lang="de">XOCO Café Nürnberg</h2>
+        <h2 data-lang="es">XOCO Café Núremberg</h2>
         <h2 data-lang="en">XOCO Café Nürnberg</h2>
       </div>
 
@@ -892,12 +907,32 @@
   <script>
     const deBtn = document.getElementById('deBtn');
     const enBtn = document.getElementById('enBtn');
+    const esBtn = document.getElementById('esBtn');
 
     deBtn.addEventListener('click', () => {
-      document.body.classList.remove('english');
+      document.body.classList.remove('english','spanish');
       deBtn.classList.add('active');
       enBtn.classList.remove('active');
+      esBtn.classList.remove('active');
       document.documentElement.lang = 'de';
+    });
+
+    enBtn.addEventListener('click', () => {
+      document.body.classList.add('english');
+      document.body.classList.remove('spanish');
+      enBtn.classList.add('active');
+      deBtn.classList.remove('active');
+      esBtn.classList.remove('active');
+      document.documentElement.lang = 'en';
+    });
+
+    esBtn.addEventListener('click', () => {
+      document.body.classList.add('spanish');
+      document.body.classList.remove('english');
+      esBtn.classList.add('active');
+      deBtn.classList.remove('active');
+      enBtn.classList.remove('active');
+      document.documentElement.lang = 'es';
     });
 
     enBtn.addEventListener('click', () => {
@@ -909,3 +944,4 @@
   </script>
 </body>
 </html>
+
